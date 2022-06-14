@@ -13,7 +13,7 @@ const Header: FC = () => {
     return (
         <Navbar bg="dark" variant="dark" sticky="top">
             <Container>
-                <Navbar.Brand className="me-auto" href="#home">The Rick and Morty</Navbar.Brand>
+                <Navbar.Brand className="me-auto" href="/">The Rick and Morty</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 
                 <Navbar.Collapse  className=" justify-content-end" id="basic-navbar-nav">
