@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Table} from "react-bootstrap";
 import {useStore} from "effector-react";
-import {$error, getEpisodeDetail} from "../../effector/Store";
+import {$error, getEpisodeDetail} from "../../effector/Episode";
 import {Link} from "react-router-dom";
 
 interface Props {
@@ -14,7 +14,6 @@ interface Props {
 const TableBlock: FC<Props> = ({data, disabledData, disabledEN, disabledCharacter}) => {
 
     const notError = useStore($error)
-
     const onclickEpisode = (id: string) => {
         getEpisodeDetail(id)
     }
@@ -23,7 +22,6 @@ const TableBlock: FC<Props> = ({data, disabledData, disabledEN, disabledCharacte
 
     return (
         <Table striped bordered hover>
-
             <thead>
             <tr>
                 <th>id</th>

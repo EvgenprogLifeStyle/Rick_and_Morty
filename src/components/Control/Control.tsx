@@ -36,7 +36,6 @@ const Control: FC<PropsControl> = ({
                 </svg>
             </Button>
 
-
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Column setting</Offcanvas.Title>
@@ -65,7 +64,6 @@ const Control: FC<PropsControl> = ({
                     </div>
                 </Offcanvas.Body>
             </Offcanvas>
-
         </div>
     )
 }

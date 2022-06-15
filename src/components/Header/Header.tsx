@@ -1,13 +1,7 @@
 import React, {FC} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import {Container, Nav, Navbar} from "react-bootstrap";
-
-
-export interface PropsNavbar {
-    href: string;
-    children: React.ReactNode;
-}
+import {Link, NavLink} from "react-router-dom";
 
 const Header: FC = () => {
     return (
@@ -16,10 +10,12 @@ const Header: FC = () => {
                 <Navbar.Brand className="me-auto" href="/">The Rick and Morty</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 
-                <Navbar.Collapse  className=" justify-content-end" id="basic-navbar-nav">
+                <Navbar.Collapse className=" justify-content-end" id="basic-navbar-nav">
                     <Nav>
-                        {/*<Nav.Link> Home </Nav.Link>*/}
-                        <Nav.Link>Characters</Nav.Link>
+
+
+                        <NavLink  className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} to="/character">Characters</NavLink>
+                        <NavLink className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} to="/location">Location</NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

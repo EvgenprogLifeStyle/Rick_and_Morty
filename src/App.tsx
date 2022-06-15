@@ -5,19 +5,20 @@ import {Container} from "react-bootstrap";
 import Header from "./components/Header/Header";
 import Loading from "./components/Loading/Loading";
 import {useStore} from "effector-react";
-import $store, {fetchUserReposFx} from "./effector/Store";
-import Home from "./components/Home/Home";
+import {$episode, getEpisodeReposFx} from "./effector/Episode";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
-import Detail from "./components/Detail/Detail";
-import {sortCharacter} from "./effector/Sort";
+import {EpisodeInt} from "./types/Types";
+const Character = React.lazy(() => import('./components/Pages/Character/Character'));
+const Detail = React.lazy(() => import('./components/Pages/Detail/Detail'));
+const Home = React.lazy(() => import('./components/Pages/Home/Home'));
+const Location = React.lazy(() => import('./components/Pages/Location/Location'));
+const NotFound = React.lazy(() => import('./components/NotFound/NotFound'));
 
 const App: FC = () => {
-
-    const arrEpisode: any[] = useStore<any>($store)
+    const arrEpisode = useStore<EpisodeInt[]>($episode)
 
     useEffect(() => {
-        fetchUserReposFx()
-        sortCharacter()
+        getEpisodeReposFx()
     }, [])
 
     if (arrEpisode.length < 1) {
@@ -26,16 +27,19 @@ const App: FC = () => {
 
     return (
         <Router>
-            <Suspense fallback={<Loading/>}>
-                <Header/>
-                <Container>
+            <Header/>
+            <Container>
+                <Suspense fallback={<Loading/>}>
                     <Routes>
                         <Route path='/' element={<Navigate replace to="/episode"/>}/>
                         <Route path='/episode' element={<Home/>}/>
+                        <Route path='/character' element={<Character/>}/>
                         <Route path='/episode/:id' element={<Detail/>}/>
+                        <Route path='/location' element={<Location/>}/>
+                        <Route path='*' element={<NotFound/>}/>
                     </Routes>
-                </Container>
-            </Suspense>
+                </Suspense>
+            </Container>
         </Router>
     );
 }

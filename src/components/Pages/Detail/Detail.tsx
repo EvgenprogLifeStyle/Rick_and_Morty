@@ -1,20 +1,12 @@
 import React, {FC, useEffect} from 'react';
 import {useStore} from "effector-react";
-import {$episodeDetail, getEpisodeDetail} from "../../effector/Store";
+import {$episodeDetail, getEpisodeDetail} from "../../../effector/Episode";
 import {useParams} from "react-router-dom";
-import Loading from "../Loading/Loading";
+import Loading from "../../Loading/Loading";
 import {Col, Row} from 'react-bootstrap';
-import CharacterCard from "../CharacterCard/CharacterCard";
+import CharacterCard from "../../CharacterCard/CharacterCard";
 
-// interface propsInt{
-//     id: number;
-//     name:string;
-//     air_date: string;
-//     characters: any[];
-//     created: string;
-//     episode: string;
-//     url?:string
-// }
+
 
 const Detail: FC = () => {
 

@@ -1,8 +1,21 @@
 import {createEffect, createStore} from 'effector'
 import {apiEpisode} from "../api/Api";
+import {EpisodeInt} from "../types/Types";
+
+
+const defaultEpisode =[{
+    id: 0,
+    name:"",
+    air_date: "",
+    characters: [],
+    created: '',
+    episode: '',
+    url:'',
+}]
+
 
 /*get Episode*/
-export const fetchUserReposFx = createEffect(async () =>
+export const getEpisodeReposFx = createEffect(async () =>
     await apiEpisode.getEpisode().then(response => response.results)
 )
 
@@ -21,13 +34,26 @@ export const searchReposFx = createEffect(async (data: string) =>
         )
 )
 
-export const $error = createStore('').on(errorSearch,
+/*pages*/
+export const pagesReposFx = createEffect(async (page: number) =>
+    await apiEpisode.getPagesActive(page)
+        .then(response =>{
+            console.log(response.results)
+            return response.results
+        }  )
+)
+
+export const $error = createStore<string>('').on(errorSearch,
     (state, repos) => repos)
 
-const $store = createStore([])
-    .on(fetchUserReposFx.doneData,
+
+
+export const $episode = createStore<EpisodeInt[]>(defaultEpisode)
+    .on(getEpisodeReposFx.doneData,
         (state, repos) => repos)
     .on(searchReposFx.doneData,
+        (_, repos) => repos)
+    .on(pagesReposFx.doneData,
         (_, repos) => repos)
 // .on(sortCharacter.doneData,
 //     (_, repos) => repos)
@@ -41,4 +67,3 @@ export const getEpisodeDetail = createEffect(async (episodeId: string) =>
 export const $episodeDetail = createStore(null)
     .on(getEpisodeDetail.doneData, (_, repos) => repos)
 
-export default $store
