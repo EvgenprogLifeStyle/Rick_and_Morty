@@ -30,7 +30,7 @@ const PaginationBlock: FC<PropsPages> = ({pagesAll, onClickPage}) => {
 
     return (
         <div className="d-flex justify-content-center">
-            <Pagination>
+            <Pagination >
                 {pages.map((item, idx) =>
                     item === activePage
                         ? <Pagination.Item active key={idx} onClick={() => onClickItem(item)}>{item}</Pagination.Item>

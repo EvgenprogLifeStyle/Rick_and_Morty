@@ -18,7 +18,7 @@ const TableBlock: FC<Props> = ({data, disabledData, disabledEN, disabledCharacte
         getEpisodeDetail(id)
     }
 
-    if (notError) return <div className="d-flex justify-content-center align-items-center">{notError}</div>
+    if (notError) return <div className="d-flex justify-content-center align-items-center fs-4 fw-bold">{notError}</div>
 
     return (
         <Table striped bordered hover>
@@ -49,7 +49,11 @@ const TableBlock: FC<Props> = ({data, disabledData, disabledEN, disabledCharacte
                                           className="text-secondary fw-bold text-decoration-none mask  rgba-red-strong"
                                           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => onclickEpisode(item.id)}>{item.id}</Link>
                                 </td>
-                                <td>{item.name}</td>
+                                <td>
+                                    <Link to={path}
+                                          className="text-secondary   text-decoration-none "
+                                          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => onclickEpisode(item.id)}> {item.name}</Link>
+                                </td>
                                 {disabledData &&
                                     <td>{item.air_date}</td>
                                 }
