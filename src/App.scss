@@ -11,6 +11,7 @@
   url('./assets/fonts/roboto-v30-latin_cyrillic-regular.ttf') format('truetype'), /* Safari, Android, iOS */
   url('./assets/fonts/roboto-v30-latin_cyrillic-regular.svg#Roboto') format('svg'); /* Legacy iOS */
 }
+
 /* roboto-500 - latin_cyrillic */
 @font-face {
   font-family: 'Roboto';
@@ -24,6 +25,7 @@
   url('./assets/fonts/roboto-v30-latin_cyrillic-500.ttf') format('truetype'), /* Safari, Android, iOS */
   url('./assets/fonts/roboto-v30-latin_cyrillic-500.svg#Roboto') format('svg'); /* Legacy iOS */
 }
+
 /* roboto-700 - latin_cyrillic */
 @font-face {
   font-family: 'Roboto';
@@ -42,12 +44,16 @@ html, body {
   min-height: 100vh;
   font-family: Roboto;
 }
-#root{
+
+#root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  &>.container{
+
+  & > .container {
     flex: 1 1 auto;
+    //max-width: 100%;
+    overflow-y: hidden;
   }
 }
 
@@ -70,5 +76,22 @@ html, body {
 
   .page-link {
     color: #212529;
+  }
+}
+
+@media (max-width: 992px) {
+  .wrap-footer {
+    & > div {
+      text-align: center !important;
+      &:not(:last-child){
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+@-moz-document url-prefix() {
+  fieldset {
+    display: table-cell;
   }
 }

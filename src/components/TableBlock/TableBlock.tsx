@@ -21,7 +21,7 @@ const TableBlock: FC<Props> = ({data, disabledData, disabledEN, disabledCharacte
     if (notError) return <div className="d-flex justify-content-center align-items-center fs-4 fw-bold">{notError}</div>
 
     return (
-        <Table striped bordered hover>
+        <Table striped bordered hover className="table-responsive">
             <thead>
             <tr>
                 <th>id</th>

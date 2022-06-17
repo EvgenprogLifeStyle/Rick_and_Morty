@@ -6,7 +6,7 @@ import Header from "./components/Header/Header";
 import Loading from "./components/Loading/Loading";
 import {useStore} from "effector-react";
 import {$episode, getEpisodeReposFx} from "./effector/Episode";
-import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Navigate, Route, Routes, useNavigate, useParams} from "react-router-dom";
 import {EpisodeInt} from "./types/Types";
 import Footer from "./components/Footer/Footer";
 const Character = React.lazy(() => import('./components/Pages/Character/Character'));
@@ -18,7 +18,9 @@ const NotFound = React.lazy(() => import('./components/NotFound/NotFound'));
 const App: FC = () => {
     const arrEpisode = useStore<EpisodeInt[]>($episode)
 
+
     useEffect(() => {
+
         getEpisodeReposFx()
     }, [])
 
@@ -26,6 +28,9 @@ const App: FC = () => {
         return <Loading/>
     }
 
+
+
+    // @ts-ignore
     return (
         <Router>
             <Header/>
@@ -33,10 +38,10 @@ const App: FC = () => {
                 <Suspense fallback={<Loading/>}>
                     <Routes>
                         <Route path='/' element={<Navigate replace to="/episode"/>}/>
-                        <Route path='/episode' element={<Home/>}/>
-                        <Route path='/character' element={<Character/>}/>
-                        <Route path='/episode/:id' element={<Detail/>}/>
-                        <Route path='/location' element={<Location/>}/>
+                        <Route path='episode' element={<Home/>}/>
+                        <Route path='character' element={<Character/>}/>
+                        <Route path='episode/:id' element={<Detail/>}/>
+                        <Route path='location' element={<Location/>}/>
                         <Route path='*' element={<NotFound/>}/>
                     </Routes>
                 </Suspense>
